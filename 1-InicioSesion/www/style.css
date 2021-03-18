@@ -1,0 +1,310 @@
+@font-face {
+    font-family: 'changoregular';
+    src: url('../fonts/Chango/webfontkit-20210317-084150/chango-regular-webfont.woff2')
+            format('woff2'),
+        url('../fonts/Chango/webfontkit-20210317-084150/chango-regular-webfont.woff')
+            format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --back1: #357a68;
+    --back2: #c7512e;
+    --accepted: #42c7a3;
+    --declined: #7a4535;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'changoregular';
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--back1);
+}
+
+.head,
+.datos {
+    background: var(--back2);
+}
+
+/* EYE STYLES */
+
+.head {
+    width: 200px;
+    height: 180px;
+    margin: 25px;
+    border-radius: 50% 50% 35% 35% / 70% 70% 25% 25%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 5px 10px;
+    border: 3px solid black;
+}
+
+.eye {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    background: whitesmoke;
+    border-radius: 50%;
+}
+
+.eye-inner {
+    position: absolute;
+    display: inline-block;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    background-color: black;
+    margin-left: 5px;
+    margin-top: 6px;
+}
+
+.eye-inner:after {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 50px;
+    height: 50px;
+    transform: translate(-55%, -55%);
+    background: whitesmoke;
+    border-radius: 50%;
+    content: '';
+}
+
+/* BLINKING */
+.blinkMedium,
+.blinkClose,
+.noSee {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    z-index: 1;
+    background: var(--declined);
+    border-bottom: 5px solid black;
+}
+.blinkMedium {
+    top: 8%;
+    left: 9%;
+    width: 160px;
+    height: 75px;
+    box-shadow: 0 -10px 1px black;
+    border: 5px solid black;
+    clip-path: circle(50% at 50% 100%);
+}
+.blinkClose {
+    top: 15%;
+    left: 18%;
+    width: 125px;
+    height: 125px;
+}
+.noSee {
+    top: 15%;
+    left: 18%;
+    width: 125px;
+    height: 125px;
+    z-index: 2;
+}
+
+/* ESTILOS DEL FORMULARIO */
+
+.datos,
+button,
+form input {
+    border-radius: 5px;
+}
+
+.datos {
+    width: 50rem;
+    height: 35rem;
+    box-shadow: 0px 5px 10px;
+    border: 3px solid black;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.datos label {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+form input {
+    width: 40rem;
+    height: 3rem;
+    padding: 5px;
+    margin-top: 5x;
+    border: 0;
+    background: whitesmoke;
+    font-size: 20px;
+}
+
+form input:focus,
+form button:focus {
+    outline-width: 0;
+}
+
+.field,
+button {
+    text-transform: uppercase;
+}
+
+.field {
+    border: none;
+    margin-top: 15px;
+}
+
+button {
+    width: 15rem;
+    height: 5rem;
+    margin: 2rem;
+    border: 0;
+    transition: all 0.3s;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px;
+    background: whitesmoke;
+}
+button:active {
+    transform: scale(0.97);
+}
+.openEnter {
+    background: var(--declined);
+    border: 5px dashed var(--back2);
+    transition: all 0.3s;
+    cursor: not-allowed;
+}
+.validatedEnter {
+    background: var(--accepted);
+    transition: all 0.3s;
+    border: 3px solid black;
+}
+.validatedEnter:hover {
+    background: whitesmoke;
+}
+.inputError {
+    border: 5px dashed var(--back2);
+}
+.validatedInput {
+    border: 3px solid var(--accepted);
+}
+
+/* RESULT */
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 25px;
+}
+/* SHOW / HIDE ELEMENTS */
+.showFirst,
+.showThen {
+    display: none;
+}
+#lovecraft {
+    background: url('../icons/lovecraft.png') no-repeat;
+    background-size: contain;
+    height: 300px;
+    width: 150px;
+}
+.links {
+    display: flex;
+}
+
+.linkedin {
+    background: url('../icons/linkedin.png') no-repeat;
+}
+.github {
+    background: url('../icons/signo-de-github.png') no-repeat;
+}
+.linkedin,
+.github {
+    background-size: contain;
+    height: 35px;
+    width: 35px;
+    margin: 15px;
+}
+
+/* SPINNER - https://tobiasahlin.com/spinkit/ */
+.spinner {
+    margin: 200px auto;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    text-align: center;
+
+    -webkit-animation: sk-rotate 2s infinite linear;
+    animation: sk-rotate 2s infinite linear;
+}
+
+.dot1,
+.dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: var(--declined);
+    border-radius: 100%;
+
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.dot2 {
+    top: auto;
+    bottom: 0;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+@-webkit-keyframes sk-rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes sk-rotate {
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes sk-bounce {
+    0%,
+    100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}

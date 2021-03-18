@@ -1,7 +1,13 @@
+/**
+ *  HINT: EMAIL IS VALIDATED DOWN HERE
+ *  AS WELL AS THE PASSWORD.
+ */
+
 // Variables
 const btnEnter = document.querySelector('#enter');
 const form = document.querySelector('#logForm');
 const lid = document.querySelector('.lid');
+const banner = document.querySelector('.banner');
 
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
@@ -11,7 +17,7 @@ eventListeners();
 function eventListeners() {
     document.addEventListener('DOMContentLoaded', openApp);
 
-    // Form inputs
+    // Validate inputs
     email.addEventListener('blur', validateForm);
     password.addEventListener('blur', validateForm);
 
@@ -26,17 +32,24 @@ function eventListeners() {
 
     // Screen width
     document.addEventListener('click', screenWidth);
+
+    // Close banner
+    banner.addEventListener('click', closeBanner);
 }
 
-// Functions
+// FUNCTIONS
+
+// When DOM is loaded
 function openApp() {
     btnEnter.disabled = true;
     btnEnter.textContent = 'Not yet';
     btnEnter.classList.add('openEnter');
 }
 
+// Validate email and password
 function validateForm(e) {
     const error = document.querySelector('p.error');
+    // Check if there is nothing on the inputs
     if (e.target.value.length > 0) {
         if (error) {
             error.remove();
@@ -48,9 +61,9 @@ function validateForm(e) {
         e.target.classList.add('openEnter');
         lid.classList.remove('noSee');
         lid.classList.add('blinkMedium');
-        showError("You're boring me..");
+        showError("C'mon, write something");
     }
-
+    // Validate THE ONLY VALID email
     if (e.target.type === 'email') {
         if (email.value === 'rick@deckard.com') {
             if (error) {
@@ -62,7 +75,7 @@ function validateForm(e) {
             showError("That's not the droid I'm looking for");
         }
     }
-
+    // Check if email and password are correct
     if (email.value === 'rick@deckard.com' && password.value === 'r2d2') {
         btnEnter.disabled = false;
         btnEnter.classList.remove('openEnter');
@@ -74,7 +87,7 @@ function validateForm(e) {
         console.log('Not yet');
     }
 }
-
+// Show error messages
 function showError(message) {
     const errorMessage = document.createElement('p');
     errorMessage.textContent = message;
@@ -85,7 +98,7 @@ function showError(message) {
         form.appendChild(errorMessage);
     }
 }
-
+// Action when click on enter
 function enter(e) {
     e.preventDefault();
     form.style.display = 'none';
@@ -97,13 +110,13 @@ function enter(e) {
 
         const result = document.querySelector('.result');
         result.classList.remove('showThen');
-
-        // formulario.insertBefore(result, spinner);
     }, 1800);
 }
 
+// BLINKING
+// Set the interval as a variable
 const blinking = setInterval(eyeWink, 3000);
-
+// Execute the interval for the winking
 function eyeWink() {
     setTimeout(() => {
         lid.classList.remove('blinkMedium');
@@ -120,22 +133,27 @@ function eyeWink() {
         }
     }, 2500);
 }
-
+// Stop the interval for the password writing
 function stopBlinking() {
     clearInterval(blinking);
     lid.classList.remove('blinkMedium');
     lid.classList.add('noSee');
 }
 
+// Close banner
+function closeBanner() {
+    banner.style.display = 'none';
+}
+
+// LAST HINT, if you play with responsive you can see the answer
 function screenWidth() {
     if (screen.width < 450) {
-        console.log('Hola');
         email.placeholder = 'rick@deckard.com';
         password.placeholder = 'r2d2';
     }
 }
 
-// EYE TRACKING
+// EYE TRACKING FUNCTION
 document.querySelector('body').addEventListener('mousemove', eyeball);
 function eyeball() {
     let eye = document.querySelectorAll('.eye');

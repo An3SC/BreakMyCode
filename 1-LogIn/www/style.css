@@ -86,13 +86,23 @@
 /* BLINKING */
 .blinkMedium,
 .blinkClose,
-.noSee {
+.noSee,
+.startBlink {
     position: absolute;
     content: '';
     border-radius: 50%;
     z-index: 1;
     background: var(--declined);
-    border-bottom: 5px solid black;
+    border-bottom: 6px solid black;
+}
+.startBlink {
+    top: 8%;
+    left: 9%;
+    width: 160px;
+    height: 75px;
+    box-shadow: 0 -10px 1px black;
+    border: 5px solid black;
+    clip-path: circle(50% at 50% 100%);
 }
 .blinkMedium {
     top: 8%;
@@ -213,6 +223,9 @@ button:active {
     margin-top: 100px;
     font-size: 25px;
 }
+.error {
+    font-size: 20px;
+}
 /* SHOW / HIDE ELEMENTS */
 .showFirst,
 .showThen {
@@ -240,6 +253,12 @@ button:active {
     height: 35px;
     width: 35px;
     margin: 15px;
+}
+
+/* KILLED // stapIt */
+.killed,
+.stapIt {
+    display: none;
 }
 
 /* SPINNER - https://tobiasahlin.com/spinkit/ */
@@ -306,5 +325,171 @@ button:active {
     50% {
         transform: scale(1);
         -webkit-transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .datos {
+        width: 45rem;
+        height: 30rem;
+    }
+    .result {
+        margin-top: 50px;
+        font-size: 20px;
+    }
+    form {
+        margin-top: 4rem;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .datos {
+        width: 35rem;
+        height: 23rem;
+    }
+    form {
+        margin-top: 2rem;
+    }
+    .datos label {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+    form input {
+        width: 20rem;
+        height: 2rem;
+        padding: 3px;
+        margin-top: 3x;
+        font-size: 15px;
+    }
+    .field {
+        border: none;
+        margin-top: 12px;
+    }
+    button {
+        width: 10rem;
+        height: 4rem;
+        margin: 2rem;
+        font-size: 18px;
+    }
+    .spinner {
+        margin: 100px auto;
+        width: 100px;
+        height: 100px;
+    }
+    .result {
+        margin-top: 50px;
+        font-size: 20px;
+    }
+    #lovecraft {
+        height: 200px;
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .datos {
+        width: 25rem;
+        height: 23rem;
+    }
+    .spinner {
+        margin: 100px auto;
+        width: 80px;
+        height: 80px;
+    }
+    .result,
+    .error {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .datos {
+        width: 20rem;
+        height: 23rem;
+    }
+    form {
+        margin-top: 2rem;
+    }
+    .datos label {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    form input {
+        width: 17rem;
+        height: 2rem;
+        padding: 3px;
+        margin-top: 3x;
+        font-size: 15px;
+    }
+    button {
+        width: 9rem;
+        height: 4rem;
+        margin: 1rem;
+        font-size: 15px;
+    }
+    .result {
+        margin-top: 40px;
+        font-size: 15px;
+    }
+    #lovecraft {
+        height: 200px;
+        width: 100px;
+    }
+    .error {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 319px) {
+    .head,
+    .datos {
+        transition: all 0.3s;
+        display: none;
+    }
+    .killed {
+        display: block;
+        background: var(--back2);
+        box-shadow: 0px 5px 10px;
+        border: 3px solid black;
+        border-radius: 5px;
+    }
+    .killed div {
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+/* @media screen and (max-width: 319px) {
+    .head,
+    .datos {
+        transition: all 0.3s;
+        display: none;
+    }
+    .killed {
+        display: block;
+        background: var(--back2);
+        width: 80vw;
+    }
+} */
+
+@media screen and (max-width: 99px) {
+    .head,
+    .datos,
+    .killed {
+        transition: all 0.3s;
+        display: none;
+    }
+    .stapIt {
+        display: block;
+        background: var(--back2);
+        box-shadow: 0px 5px 10px;
+        border: 3px solid black;
+        border-radius: 5px;
+        width: 80vw;
+        font-size: 10px;
+    }
+    .stapIt div {
+        padding: 10px;
+        text-align: center;
     }
 }

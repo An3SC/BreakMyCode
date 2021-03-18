@@ -7,7 +7,6 @@ const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 
 // Events
-
 eventListeners();
 function eventListeners() {
     document.addEventListener('DOMContentLoaded', openApp);
@@ -22,8 +21,11 @@ function eventListeners() {
     // Blink
     document.addEventListener('click', eyeWink);
 
-    //Password watching
-    password.addEventListener('click', stopBlinking);
+    // Password watching
+    password.addEventListener('focus', stopBlinking);
+
+    // Screen width
+    document.addEventListener('click', screenWidth);
 }
 
 // Functions
@@ -40,10 +42,13 @@ function validateForm(e) {
             error.remove();
         }
         e.target.classList.remove('openEnter');
+        lid.classList.remove('noSee');
+        lid.classList.add('blinkMedium');
     } else {
         e.target.classList.add('openEnter');
         lid.classList.remove('noSee');
-        mostrarError("You're boring me..");
+        lid.classList.add('blinkMedium');
+        showError("You're boring me..");
     }
 
     if (e.target.type === 'email') {
@@ -54,7 +59,7 @@ function validateForm(e) {
             e.target.classList.remove('openEnter');
         } else {
             e.target.classList.add('openEnter');
-            mostrarError("That's not the droid I'm looking for.");
+            showError("That's not the droid I'm looking for");
         }
     }
 
@@ -64,19 +69,20 @@ function validateForm(e) {
         btnEnter.classList.add('validatedEnter');
         btnEnter.textContent = 'Enter';
         lid.classList.remove('noSee');
+        lid.classList.remove('blinkMedium');
     } else {
         console.log('Not yet');
     }
 }
 
-function mostrarError(mensaje) {
-    const mensajeError = document.createElement('p');
-    mensajeError.textContent = mensaje;
-    mensajeError.classList.add('error');
+function showError(message) {
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = message;
+    errorMessage.classList.add('error');
 
     const errores = document.querySelectorAll('.error');
     if (errores.length === 0) {
-        form.appendChild(mensajeError);
+        form.appendChild(errorMessage);
     }
 }
 
@@ -92,26 +98,41 @@ function enter(e) {
         const result = document.querySelector('.result');
         result.classList.remove('showThen');
 
-        formulario.insertBefore(result, spinner);
+        // formulario.insertBefore(result, spinner);
     }, 1800);
 }
 
-const blinking = setInterval(eyeWink, 2000);
+const blinking = setInterval(eyeWink, 3000);
 
 function eyeWink() {
     setTimeout(() => {
         lid.classList.remove('blinkMedium');
         lid.classList.add('blinkClose');
-    }, 1200);
+        if (lid.classList.contains('noSee')) {
+            lid.classList.remove('blinkClose');
+        }
+    }, 2000);
     setTimeout(() => {
         lid.classList.remove('blinkClose');
         lid.classList.add('blinkMedium');
-    }, 1800);
+        if (lid.classList.contains('noSee')) {
+            lid.classList.remove('blinkMedium');
+        }
+    }, 2500);
 }
 
 function stopBlinking() {
     clearInterval(blinking);
+    lid.classList.remove('blinkMedium');
     lid.classList.add('noSee');
+}
+
+function screenWidth() {
+    if (screen.width < 450) {
+        console.log('Hola');
+        email.placeholder = 'rick@deckard.com';
+        password.placeholder = 'r2d2';
+    }
 }
 
 // EYE TRACKING

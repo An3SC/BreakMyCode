@@ -75,6 +75,18 @@ function validateForm(e) {
             showError("That's not the droid I'm looking for");
         }
     }
+    // Validate THE ONLY VALID password
+    if (e.target.type === 'password') {
+        if (password.value === 'r2d2') {
+            if (error) {
+                error.remove();
+            }
+            e.target.classList.remove('openEnter');
+        } else {
+            e.target.classList.add('openEnter');
+            showError("That's not the OTHER droid I'm looking for");
+        }
+    }
     // Check if email and password are correct
     if (email.value === 'rick@deckard.com' && password.value === 'r2d2') {
         btnEnter.disabled = false;

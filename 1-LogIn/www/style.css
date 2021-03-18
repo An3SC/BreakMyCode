@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'changoregular';
-    src: url('../fonts/Chango/webfontkit-20210317-084150/chango-regular-webfont.woff2')
+    src: url('./Chango/webfontkit-20210317-084150/chango-regular-webfont.woff2')
             format('woff2'),
-        url('../fonts/Chango/webfontkit-20210317-084150/chango-regular-webfont.woff')
+        url('./Chango/webfontkit-20210317-084150/chango-regular-webfont.woff')
             format('woff');
     font-weight: normal;
     font-style: normal;
